@@ -1,5 +1,6 @@
 import express from 'express'
 import { configDotenv } from 'dotenv'
+import { errorHandling } from './middleware/ErrorHandling.js'
 configDotenv()
 
 //CREATE AN EXPRESS APP
@@ -18,7 +19,7 @@ app.use((req, res, next) => {
 }) 
 
 //ENDPOINT
-app.get('^/$|/EOMP', (req, res) => {
+app.get('^/$|/Home', (req, res) => {
     res.status(200).sendFile(path.resolve('./static/html/index.html'))
 })
 
@@ -29,6 +30,8 @@ app.get('*', (req, res) => {
     })
 })
 
+app.use(errorHandling)
+
 app.listen(port, () => {
-    console.log(`Server is running on ${port}`);
+    console.log(`Server is running on port: ${port}`);
 })
