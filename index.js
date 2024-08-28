@@ -1,7 +1,8 @@
-import express from 'express'
-import { configDotenv } from 'dotenv'
+import path from 'path'
+import cors from 'cors' 
+import { productRouter } from './controller/ProductController.js'
+import { userRouter, express } from './controller/UserController.js'
 import { errorHandling } from './middleware/ErrorHandling.js'
-configDotenv()
 
 //CREATE AN EXPRESS APP
 const app = express()
@@ -17,6 +18,14 @@ app.use((req, res, next) => {
     res.header("Access-Control-Expose-Headers", "Authorization");
     next()
 }) 
+
+app.use('/users', userRouter)
+app.use('/products',productRouter)
+app.use( express.static('./static'), express.json(), express.urlencoded({
+    extended: true
+    }),
+    cors()
+)
 
 //ENDPOINT
 app.get('^/$|/Home', (req, res) => {
