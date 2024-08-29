@@ -5,7 +5,7 @@ import { compare, hash } from 'bcrypt'
 class Users{
     getUsers(req, res){
         try {
-            const strQry = `SELECT firstName, lastName, userRole FROM Users;`
+            const strQry = `SELECT userID, firstName, lastName, gender, userRole, emailAdd, userPass FROM Users;`
 
             db.query(strQry, (err, results) => {
                 `Unable to fetch all users`
@@ -26,7 +26,7 @@ class Users{
 
     getUser(req, res){
         try {
-            const strQry = `SELECT firstName, lastName, userAge, gender, userRole, emailAdd, userProfile FROM Users WHERE userID = ${req.params.id};`
+            const strQry = `SELECT userID firstName, lastName, gender, userRole, emailAdd, userPass FROM Users WHERE userID = ${req.params.id};`
 
             db.query(strQry, (err, result) => {
                 if (err) throw new Error(`Unable to fetch user`);
@@ -129,7 +129,7 @@ class Users{
     async loginUser(req, res){
         try {
             const { emailAdd, userPass } = req.body
-            const strQry = `SELECT firstName, lastName, userAge, gender, userRole, emailAdd, userPass, userProfile FROM Users WHERE emailAdd = '${emailAdd}';`
+            const strQry = `SELECT userID, firstName, lastName, gender, userRole, emailAdd, userPass FROM Users WHERE emailAdd = '${emailAdd}';`
 
             db.query(strQry, async (err, result) => {
                 if (err) throw new Error('Failed to log in.')
