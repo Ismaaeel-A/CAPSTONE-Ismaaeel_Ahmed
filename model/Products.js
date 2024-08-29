@@ -3,7 +3,7 @@ import { connection as db } from "../config/index.js"
 class Products {
     getProducts(req, res) {
         try {
-            const strQry = `SELECT prodID, prodName, prodDescription, prodIngredients, quantity, amount, Category, prodUrl FROM Products;`
+            const strQry = `SELECT productID, prodName, prodBrand, prodDescription, prodImg1, prodImg2, prodImg3, price, quantity FROM Products;`
 
             db.query(strQry, (err, results) => {
                 if (err) throw new Error(`Could not fetch products at this time.`)
@@ -23,7 +23,7 @@ class Products {
 
     getProduct(req, res) {
         try {
-            const strQry = `SELECT prodID, prodName, prodDescription, prodIngredients, quantity, amount, Category, prodUrl FROM Products WHERE prodID = ${req.params.id};`
+            const strQry = `SELECT productID, prodName, prodBrand, prodDescription, prodImg1, prodImg2, prodImg3, price, quantity FROM Products WHERE productID = ${req.params.id};`
 
             db.query(strQry, (err, result) => {
                 if (err) throw new Error(`Unable to fetch Product`);
@@ -64,7 +64,7 @@ class Products {
         try {
             let data = req.body
 
-            const strQry = `UPDATE Products SET ? WHERE prodID = ${req.params.id};`
+            const strQry = `UPDATE Products SET ? WHERE productID = ${req.params.id};`
 
             db.query(strQry, [req.body], (err) => {
                 if (err) throw new Error('Product update failed.')
@@ -84,7 +84,7 @@ class Products {
 
     deleteProduct(req, res) {
         try {
-            const strQry = `DELETE FROM Products WHERE prodID = ${req.params.id};`
+            const strQry = `DELETE FROM Products WHERE productID = ${req.params.id};`
 
             db.query(strQry, (err) => {
                 if (err) throw new Error('Failed to delete item.')
