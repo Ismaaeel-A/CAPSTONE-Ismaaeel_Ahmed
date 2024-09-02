@@ -1,13 +1,17 @@
 <template>
-  <button class="btn navopt bi bi-three-dots" type="button" data-bs-toggle="offcanvas"
-    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-  </button>
+  <nav class="navbar">
+    <div class="container-fluid">
+      <button class="btn navopt bi bi-three-dots" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></button>
+      <h4>Elite Galería</h4>
+    </div>
+  </nav>
 
-  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-    aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header">
-      <h4 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Elite Galería</h4>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <h4 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+        Elite Galería
+      </h4>
+      <button type="button" class="btn-close d-flex align-items-center" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-x-octagon-fill"></i></button>
     </div>
 
     <div class="offcanvas-body">
@@ -23,22 +27,30 @@
 </template>
 
 <style scoped>
-.offcanvas-header{
+.navbar{
+  border-bottom: 1px solid #e9e9e9;
+  background: #181818;
+}
+
+
+.offcanvas-header {
   border-bottom: 1px solid #e9e9e9;
 }
 
-h4{
+h4 {
   color: #e9e9e9;
 }
 
-.navopt {
+.navopt , .btn-close{
   background: #181818;
   color: #818181;
-  transition: background 0.6s, color 0.6s;
+  border: 2px solid #818181;
+  transition:  color 0.6s, border 0.6s;
 
   &:hover {
-    background: #2a2a2a;
+    
     color: #e9e9e9;
+    border: 2px solid #e9e9e9;
   }
 }
 
