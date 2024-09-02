@@ -1,5 +1,9 @@
 <template>
-  <div class="container-fluid"></div>
+  <div class="container-fluid main">
+    <div class="head">
+        <h3>bob</h3>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -22,4 +26,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

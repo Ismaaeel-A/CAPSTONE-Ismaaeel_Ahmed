@@ -1,0 +1,101 @@
+<template>
+  <div class="container-fluid section">
+    <div class="row">
+      <div class="col-md-4">
+        <img
+          src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg"
+          alt="l"
+        />
+        <h4 class="centered">Lamborghini</h4>
+      </div>
+      <div class="col-md-4">
+        <img
+          src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg"
+          alt="p"
+        />
+        <h4 class="centered">Ferrari</h4>
+      </div>
+      <div class="col-md-4">
+        <img
+          src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg"
+          alt="f"
+        />
+        <h4 class="centered">Pagani</h4>
+      </div>
+    </div>
+
+    <main>
+      <h2 class="text-center mt-4">The Showroom</h2>
+
+      <div class="d-flex justify-content-center">
+        <input type="search" class="mt-2" />
+      </div>
+    </main>
+  </div>
+</template>
+
+<style scoped>
+* {
+  color: #e9e9e9;
+}
+.col-md-4 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-block: 2rem;
+  border-bottom: 4px solid #e9e9e9;
+
+  position: relative;
+  text-align: center;
+  color: #e9e9e9;
+
+  & img {
+    max-width: 100%;
+    transition: transform 0.3s;
+  }
+
+  &:hover {
+    & img {
+      transform: scale(0.98);
+    }
+    & h4:hover:after {
+      width: 100%;
+      left: 0;
+    }
+
+    & h4:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      background: #e9e9e9;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+  }
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2{
+  text-decoration: underline;
+}
+
+input {
+  width: 30rem;
+  max-width: 90%;
+  height: 1.8rem;
+  border-radius: 2rem;
+  justify-content: center;
+  background-color: #181818;
+  padding-inline: 1rem;
+}
+</style>

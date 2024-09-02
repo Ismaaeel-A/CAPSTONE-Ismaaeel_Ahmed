@@ -1,21 +1,21 @@
 <template>
-  <NavBar/>
-  <router-view/>
-  <FooterBar/>
+  <div>
+    <NavBar />
+    <router-view />
+    <FooterBar />
+  </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
-import FooterBar from './components/FooterBar.vue';
+import NavBar from "./components/NavBar.vue";
+import FooterBar from "./components/FooterBar.vue";
 
 export default {
   components: {
     NavBar,
-    FooterBar
-  }
-}
+    FooterBar,
+  },
+};
 </script>
 
-<style src="./assets/css/style.css">
-
-</style>
+<style src="./assets/css/style.css"></style>
