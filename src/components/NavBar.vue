@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar sticky-top">
     <div class="container-fluid">
       <button class="btn navopt bi bi-three-dots" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></button>
       <h4>Elite Galería</h4>
@@ -16,9 +16,9 @@
 
     <div class="offcanvas-body">
       <nav class="navlinks d-flex flex-column">
-        <router-link to="../views/" class="links">Home</router-link>
-        <router-link to="../views/" class="links">About</router-link>
-        <router-link to="../views/" class="links">Showroom</router-link>
+        <router-link to="/" class="links">Home</router-link>
+        <router-link to="/about" class="links">About</router-link>
+        <router-link to="/showroom" class="links">Showroom</router-link>
         <router-link to="../views/" class="links">Checkout</router-link>
         <router-link to="../views/" class="links">Contact</router-link>
       </nav>
@@ -30,11 +30,13 @@
 .navbar{
   border-bottom: 1px solid #e9e9e9;
   background: #181818;
+  height: 4rem;
 }
 
 
 .offcanvas-header {
   border-bottom: 1px solid #e9e9e9;
+  height: 4rem;
 }
 
 h4 {
