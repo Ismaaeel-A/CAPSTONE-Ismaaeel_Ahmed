@@ -2,15 +2,15 @@
   <div class="container-fluid section">
     <div class="row">
       <div class="col-md-4">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg" alt="l" />
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg" alt="Lamborghini" />
         <h4 class="centered">Lamborghini</h4>
       </div>
       <div class="col-md-4">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="p" />
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
         <h4 class="centered">Ferrari</h4>
       </div>
       <div class="col-md-4">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg" alt="f" />
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg" alt="Pagani" />
         <h4 class="centered">Pagani</h4>
       </div>
     </div>
@@ -31,7 +31,6 @@
           <template #cardBody>
             <h6>{{ products.prodName }}</h6>
           </template>
-
         </DisplayCard>
       </div>
 
@@ -130,5 +129,6 @@ input {
 img{
     width: 100%;
     user-select: none;
+    filter: drop-shadow(0 0 1rem #000000);
   }
 </style>

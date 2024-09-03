@@ -19,10 +19,14 @@
     
     &:hover{
       & .card-body , .card-header{
-        transition: background 2s;
+        transition: ease-in-out .25s;
         background: #818181;
       } 
     }
+  }
+
+  .card-body , .card-header{
+    transition: ease-in-out .25s;
   }
 
   .card-body{
