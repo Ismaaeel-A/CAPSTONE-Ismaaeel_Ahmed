@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid section">
-    <div class="row">
+    <div class="row brandopt">
       <div class="col-md-4">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg" alt="Lamborghini" />
         <h4 class="centered">Lamborghini</h4>
@@ -30,6 +30,7 @@
 
           <template #cardBody>
             <h6>{{ products.prodName }}</h6>
+            <router-link to="/single">VIEW</router-link>
           </template>
         </DisplayCard>
       </div>

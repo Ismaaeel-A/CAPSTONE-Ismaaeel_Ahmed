@@ -4,7 +4,7 @@
           <slot name="cardHeader"></slot>
       </div>
   
-      <div class="card-body">
+      <div class="card-body d-flex justify-content-between">
           <slot name="cardBody"></slot>
       </div>
     </div>
