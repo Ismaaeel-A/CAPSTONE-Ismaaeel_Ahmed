@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import AboutView from '../views/AboutView.vue'
+import ShowroomView from '../views/ShowroomView.vue'
+import SingleView from '../views/SingleView.vue'
 
 const routes = [
   {
@@ -10,17 +13,17 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: () => import('../views/AboutView.vue')
+    component: AboutView
   },
   {
     path: '/showroom',
     name: 'showroom',
-    component: () => import('../views/ShowroomView.vue')
+    component: ShowroomView
   },
   {
     path: '/single',
     name: 'single',
-    component: () => import('../views/SingleView.vue')
+    component: SingleView
   }
 ]
 
@@ -28,5 +31,9 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.afterEach(() => {
+  window.scrollTo(0, 0);
+});
 
 export default router

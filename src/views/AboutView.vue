@@ -11,11 +11,11 @@
           performance, and innovation.
         </p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex align-items-center">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex align-items-center">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
       </div>
       <div class="col-md-6">
@@ -42,11 +42,11 @@
           the automotive world.
         </p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex align-items-center">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex align-items-center">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
       </div>
       <div class="col-md-6">
@@ -72,11 +72,11 @@
           integrity, and passion for these incredible vehicles.
         </p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex align-items-center">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex align-items-center">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
       </div>
       <div class="col-md-6">
@@ -101,11 +101,11 @@
           your hypercar dreams a reality.
         </p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex align-items-center">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex align-items-center">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
       </div>
       <div class="col-md-6">
@@ -133,9 +133,11 @@ h2 {
 
 p {
   margin-bottom: 2rem;
+  padding-inline: 0.5rem;
 }
 
 img{
   max-width: 100%;
+  height: 100%;
 }
 </style>
