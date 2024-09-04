@@ -25,12 +25,17 @@
       <div class="row justify-content-center" v-if="products">
         <DisplayCard v-for="(product, productID) in products" :key="productID">
           <template #cardHeader>
-            <img :src="product.prodImg1" alt="">
+            <router-link :to="`/single/${product.productID}`" class="d-flex justify-content-between toSingle">
+              <img :src="product.prodImg1" :alt="product.prodName">
+            </router-link>
+            
           </template>
 
-          <template #cardBody>
-            <h6>{{ product.prodName }}</h6>
-            <router-link :to="`/single/${product.productID}`">VIEW</router-link>
+          <template #cardBody>           
+            <router-link :to="`/single/${product.productID}`" class="d-flex justify-content-between toSingle">
+              <h6>{{ product.prodName }}</h6>
+            <h6>R{{ product.price }}</h6>
+            </router-link>
           </template>
         </DisplayCard>
       </div>
@@ -111,6 +116,7 @@ export default {
 
 h2 {
   text-decoration: underline;
+  text-decoration-color: #818181;
 }
 
 input {
@@ -131,5 +137,10 @@ img{
     width: 100%;
     user-select: none;
     filter: drop-shadow(0 0 1rem #000000);
+  }
+
+  .toSingle{
+    width: 100%;
+    text-decoration: none;
   }
 </style>

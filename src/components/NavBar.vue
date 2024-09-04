@@ -21,6 +21,7 @@
         <router-link to="/showroom" class="links">Showroom</router-link>
         <router-link to="/" class="links">Checkout</router-link>
         <router-link to="/" class="links">Contact</router-link>
+        <router-link to="/login" class="links">Login</router-link>
       </nav>
     </div>
   </div>

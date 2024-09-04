@@ -17,10 +17,10 @@
           extraordinary. Elite Galería – Elevate Your Drive.
         </p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <button type="button" class="btn btn-lg px-4 me-md-2">
-            <router-link to="/login" class="links">LOGIN/SIGN UP</router-link>
+          <button  class="btn btn-lg px-4 me-md-2">
+            <router-link to="/login" class="links">Login/Sign Up</router-link>
           </button>
-          <button type="button" class="btn btn-lg px-4">
+          <button  class="btn btn-lg px-4">
             <router-link to="/showroom" class="links">TO SHOWROOM</router-link>
           </button>
         </div>
@@ -58,13 +58,16 @@ export default {
 }
 
 button{
-  background: #e9e9e9;
+  background: #181818;
   transition: background 0.3s;
   & *{
     color: #818181;
   }
   &:hover{
     background: #181818;   
+  }
+  &:active{
+    background: #e9e9e9;
   }
 }
 

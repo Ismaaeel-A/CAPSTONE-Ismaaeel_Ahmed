@@ -26,13 +26,17 @@
 <style>
 footer {
   background: rgb(24, 24, 24);
-  & * {
-    color: #818181;
-    transition: color 0.6s;
+  & * {    
+    color: #e9e9e9;
 
-    &:hover {
-      color: #e9e9e9;
-    }
   }
+}
+
+a , span, i{
+  color: #e9e9e9;
+  transition: color 0.6s;
+  &:hover {
+      color: #818181;
+    }
 }
 </style>
