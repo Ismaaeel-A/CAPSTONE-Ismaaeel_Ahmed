@@ -21,7 +21,7 @@ const routes = [
     component: ShowroomView
   },
   {
-    path: '/single',
+    path: '/single/:id',
     name: 'single',
     component: SingleView
   }

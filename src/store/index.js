@@ -68,11 +68,11 @@ export default createStore({
       }
     },
 
-    async fetchProduct(context) {
+    async fetchProduct(context, id) {
       try {
-        const { results, msg } = await (await axios.get(`${apiURL}products/:id`)).data
-        if (results) {
-          context.commit('setProduct', results)
+        const { result, msg } = await (await axios.get(`${apiURL}products/${id}`)).data
+        if (result) {
+          context.commit('setProduct', result)
         } else {
           toast.error(`${msg}`, {
             autoClose: 3000
