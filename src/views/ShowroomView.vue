@@ -23,14 +23,14 @@
       </div>
 
       <div class="row justify-content-center" v-if="products">
-        <DisplayCard v-for="(products, productID) in products" :key="productID">
+        <DisplayCard v-for="(product, productID) in products" :key="productID">
           <template #cardHeader>
-            <img :src="products.prodImg1" alt="">
+            <img :src="product.prodImg1" alt="">
           </template>
 
           <template #cardBody>
-            <h6>{{ products.prodName }}</h6>
-            <router-link to="/single">VIEW</router-link>
+            <h6>{{ product.prodName }}</h6>
+            <router-link :to="`/single/${product.productID}`">VIEW</router-link>
           </template>
         </DisplayCard>
       </div>

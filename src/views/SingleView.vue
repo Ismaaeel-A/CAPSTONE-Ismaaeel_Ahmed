@@ -1,25 +1,39 @@
 <template>
   <div class="container-fluid section">
     <div class="intro row">
-      <div class="d-flex flex-wrap col-md-6">
-        <img intro src="https://ismaaeel-a.github.io/allimages/Images/plc.png" alt="wallpaper" class="mx-auto"/>
-        <div class="cover d-none d-lg-none d-xl-block"></div>
+      <div class="d-flex flex-wrap col-md-6 img1">
+        <img intro :src="product.prodImg1" alt="wallpaper" class="img-fluid"/>
+        <!-- <div class="cover d-none d-lg-none d-xl-block"></div> -->
       </div>
 
-      <div class="description col-md-6 text-center px-5">
-        <h1>LaFerrari</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores vitae necessitatibus, deleniti eveniet dolorem totam facilis ex dolor libero quo. Iusto voluptatibus labore, nam eius eaque earum aliquam odio ea.</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores vitae necessitatibus, deleniti eveniet dolorem totam facilis ex dolor libero quo. Iusto voluptatibus labore, nam eius eaque earum aliquam odio ea.</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores vitae necessitatibus, deleniti eveniet dolorem totam facilis ex dolor libero quo. Iusto voluptatibus labore, nam eius eaque earum aliquam odio ea.</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores vitae necessitatibus, deleniti eveniet dolorem totam facilis ex dolor libero quo. Iusto voluptatibus labore, nam eius eaque earum aliquam odio ea.</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores vitae necessitatibus, deleniti eveniet dolorem totam facilis ex dolor libero quo. Iusto voluptatibus labore, nam eius eaque earum aliquam odio ea.</p>
+      <div class="description col-md-6 text-center px-5" v-if="product">
+        <h1> {{ product.prodName }} </h1>
+        <img :src="product.prodImg1" :alt="product.prodName" class="img-fluid">
+        
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+
+export default {
+  components: {
+
+  },
+   computed: {
+    product() {
+      return this.$store.state.product;
+    }
+  },
+  mounted() {
+    console.log(this.$route.params.id);
+    console.log('here');
+    
+    
+    this.$store.dispatch("fetchProduct", this.$route.params.id);
+  }, 
+};
 </script>
 
 <style scoped>
@@ -30,14 +44,11 @@ export default {};
 h1{
   text-decoration: underline;
 }
-img[intro] {
-  width: ;
-}
 
 /* .cover {
   position: absolute;
   width: 16rem;
-  height: 100%;
+  height: 26rem;
   background: linear-gradient(#e9e9e9, #818181);
   box-shadow: 1rem 0 2rem #000000;
   transform: skew(-19deg);
