@@ -1,12 +1,12 @@
 <template>
   <div class="container-fluid section">
-    <div class="intro row">
+    <div class="intro row" v-if="product">
       <div class="d-flex flex-wrap col-md-6 img1">
-        <img intro :src="product.prodImg1" alt="wallpaper" class="img-fluid"/>
+        <img intro :src="product.prodImg1" class="img-fluid"/>
         <!-- <div class="cover d-none d-lg-none d-xl-block"></div> -->
       </div>
 
-      <div class="description col-md-6 text-center px-5" v-if="product">
+      <div class="description col-md-6 text-center px-5">
         <h1> {{ product.prodName }} </h1>
         <img :src="product.prodImg1" :alt="product.prodName" class="img-fluid">
         

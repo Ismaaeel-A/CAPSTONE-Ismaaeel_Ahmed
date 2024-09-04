@@ -19,8 +19,8 @@
         <router-link to="/" class="links">Home</router-link>
         <router-link to="/about" class="links">About</router-link>
         <router-link to="/showroom" class="links">Showroom</router-link>
-        <router-link to="../views/" class="links">Checkout</router-link>
-        <router-link to="../views/" class="links">Contact</router-link>
+        <router-link to="/" class="links">Checkout</router-link>
+        <router-link to="/" class="links">Contact</router-link>
       </nav>
     </div>
   </div>
