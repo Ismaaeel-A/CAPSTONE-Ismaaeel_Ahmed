@@ -2,14 +2,12 @@
   <div class="container-fluid section">
     <div class="intro row" v-if="product">
       <div class="d-flex flex-wrap col-md-6 img1">
-        <img intro :src="product.prodImg1" class="img-fluid"/>
+        <img intro :src="product.prodImg2" class="img-fluid"/>
         <!-- <div class="cover d-none d-lg-none d-xl-block"></div> -->
       </div>
 
       <div class="description col-md-6 text-center px-5">
         <h1> {{ product.prodName }} </h1>
-        <img :src="product.prodImg1" :alt="product.prodName" class="img-fluid">
-        
       </div>
     </div>
   </div>
@@ -55,9 +53,6 @@ h1{
   z-index: 2;
   right: 50%;
 } */
-.col-md-6{
-  background: #818181;
-}
 .description{
   box-shadow: inset 1rem -1rem 3rem #181818;
 }
