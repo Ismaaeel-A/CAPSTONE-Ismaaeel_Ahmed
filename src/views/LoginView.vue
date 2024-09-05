@@ -44,7 +44,7 @@ select {
   /* max-width: 15rem; */
   width: 60%;
   height: 1.8rem;
-  border-radius: 2rem;
+  border-radius: 0.2rem;
   border: 0.1rem inset #e9e9e9;
   justify-content: center;
   background-color: #818181;
