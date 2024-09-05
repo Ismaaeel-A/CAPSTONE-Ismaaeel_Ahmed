@@ -40,16 +40,20 @@
         </DisplayCard>
       </div>
 
+      <SpinnerLoader v-else/>
+
     </main>
   </div>
 </template>
 
 <script>
 import DisplayCard from '@/components/DisplayCard.vue';
+import SpinnerLoader from '@/components/SpinnerLoader.vue';
 
 export default {
   components: {
     DisplayCard,
+    SpinnerLoader
   },
    computed: {
     products() {
