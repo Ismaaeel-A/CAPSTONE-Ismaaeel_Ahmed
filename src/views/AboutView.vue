@@ -12,15 +12,15 @@
         </p>
       </div>
       <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
       </div>
 
-      <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
+      <div class="col-md-6 d-flex align-items-center d-none d-md-block">
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
       </div>
-      <div class="col-md-6">
-        <h2 class="display-4 text-end">Our Mission</h2>
-        <p class="text-end">
+      <div class="col-md-6 text-md-end">
+        <h2 class="display-4">Our Mission</h2>
+        <p>
           Our mission is simple: to connect enthusiasts and collectors with the
           finest Italian hypercars in the world. We understand that owning a
           hypercar is more than just having a vehicle; it’s about embracing an
@@ -42,16 +42,16 @@
           the automotive world.
         </p>
       </div>
-      <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
+      <div class="col-md-6 d-flex align-items-center d-none d-md-block">
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
       </div>
 
       <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
       </div>
-      <div class="col-md-6">
-        <h2 class="display-4 text-end">What We Offer</h2>
-        <p class="text-end">
+      <div class="col-md-6 text-md-end">
+        <h2 class="display-4">What We Offer</h2>
+        <p>
           At Elite Galería, our inventory features a stunning range of Pagani,
           Ferrari, and Lamborghini hypercars, from the latest models to rare,
           collectible editions. Each vehicle is meticulously curated to ensure
@@ -72,16 +72,16 @@
           integrity, and passion for these incredible vehicles.
         </p>
       </div>
-      <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
+      <div class="col-md-6 d-flex align-items-center d-none d-md-block">
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
       </div>
 
       <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
       </div>
-      <div class="col-md-6">
-        <h2 class="display-4 text-end">Join the Elite</h2>
-        <p class="text-end">
+      <div class="col-md-6 text-md-end">
+        <h2 class="display-4">Join the Elite</h2>
+        <p>
           Discover the art of automotive excellence with Elite Galería. Explore
           our collection, connect with our team, and take the first step toward
           owning a piece of automotive history. Whether you’re a seasoned
@@ -101,16 +101,16 @@
           your hypercar dreams a reality.
         </p>
       </div>
-      <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
+      <div class="col-md-6 d-flex align-items-center d-none d-md-block">
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
       </div>
 
       <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" />
+        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
       </div>
-      <div class="col-md-6">
-        <h2 class="display-4 text-end">Elite Galería</h2>
-        <p class="text-end">Where Passion Meets Performance</p>
+      <div class="col-md-6 text-md-end">
+        <h2 class="display-4">Elite Galería</h2>
+        <p>Where Passion Meets Performance</p>
       </div>
     </div>
   </div>
@@ -133,7 +133,7 @@ h2 {
 
 p {
   margin-bottom: 2rem;
-  padding-inline: 0.5rem;
+  padding-inline: 0.6rem;
 }
 
 img{
