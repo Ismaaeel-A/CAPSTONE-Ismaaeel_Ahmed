@@ -139,7 +139,7 @@
             <td>{{ product.price }}</td>
             <td>{{ product.quantity }}</td>
             <td>
-              <button type="button" id="user.userID">Edit</button>
+              <button type="button" :id="`${product.productID}`">Edit</button>
               <!-- <button type="button" id="`${user.userID}`">Delete</button> -->
             </td>
           </tr>
@@ -173,26 +173,246 @@
             <td>{{ user.userPass }}</td>
             <td>{{ user.userRole }}</td>
             <td>
-              <button type="button" :id="`${user.userID}`">Edit</button>
+              <button type="button" :id="`${user.userID}`" @click="deleteUser(user.userID)">Edit</button>
               <!-- <button type="button" id="`${user.userID}`">Delete</button> -->
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#products">
+  Product
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="products" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="productsLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="productsLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input type="text" v-model="newProduct.prodName" placeholder="Name..." required>
+          <select name="" id="" v-model="newProduct.prodBrand" required>
+            <option value="Ferrari">Ferrari</option>
+            <option value="Lamborghini">Lamborghini</option>
+            <option value="Pagani">Pagani</option>
+          </select>
+          <input type="text" v-model="newProduct.prodDescription" placeholder="Description" required>
+          <input type="text" v-model="newProduct.prodImg1" placeholder="Image 1..." required>
+          <input type="text" v-model="newProduct.prodImg2" placeholder="Image 2..." required>
+          <input type="text" v-model="newProduct.prodImg3" placeholder="Image 3..." required>
+          <input type="text" v-model="newProduct.price" placeholder="Price..." required>
+          <input type="text" v-model="newProduct.quantity" placeholder="Quantity..." required>
+          <button type="button" @click="createProduct">Create</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" @click="createProduct">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#users">
+  Users
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="users" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="usersLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="usersLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input type="text" v-model="newUser.firstName" placeholder="First name..." required>
+          <input type="text" v-model="newUser.lastName" placeholder="Last name..." required>
+          <select v-model="newUser.gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <select v-model="newUser.userRole" required>
+            <option value="user">user</option>
+            <option value="admin">admin</option>
+          </select>
+          <input type="email" v-model="newUser.emailAdd" placeholder="Email" required>
+          <input type="password" v-model="newUser.userPass" placeholder="Password" required>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" @click="createUser">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
 </template>
 
 <script>
+import {mapState, mapActions } from 'vuex';
+import { toast } from 'vue3-toastify';
+
 export default {
+  data() {
+    return {
+      newProduct: {
+        prodName: "",
+        prodBrand: "",
+        prodDescription: "",
+        prodImg1: "",
+        prodImg2: "",
+        prodImg3: "",
+        price: "",
+        quantity: ""
+      },
+      newUser: {
+        firstName: "",
+        lastName: "",
+        gender: "",
+        userRole: "",
+        emailAdd: "",
+        userPass: ""
+      }
+    }
+
+
+
+
+  },
   components: {},
   computed: {
-    users() {
-      return this.$store.state.users;
+    // users() {
+    //   return this.$store.state.users;
+    // },
+    // products() {
+    //   return this.$store.state.products;
+    // },
+    ...mapState(['users', 'products'])
+  },
+  methods:{
+    ...mapActions(['addProduct', 'fetchUsers','addUser','deleteUser']),
+
+    async createProduct() {
+      try {
+        await this.addProduct(this.newProduct);
+        
+        this.newProduct = {
+          prodName: "",
+          prodBrand: "",
+          prodDescription: "",
+          prodImg1: "",
+          prodImg2: "",
+          prodImg3: "",
+          price: "",
+          quantity: ""          
+        };
+      } catch (e) {
+          toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
     },
-    products() {
-      return this.$store.state.products;
+
+    async createUser() {
+      try {
+        await this.addUser(this.newUser);
+
+        this.newUser = {
+          firstName: "",
+          lastName: "",
+          gender: "",
+          userRole: "",
+          emailAdd: "",
+          userPass: ""         
+        }
+      } catch (e) {
+          toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
     },
+
+    async deleteUser(userID) {
+      try {
+        /* await this.deleteUser(userID)  */    this.$store.dispatch('deleteUser', userID).then(() => {
+          this.fetchUsers()
+        })
+      } catch (e) {
+        console.log("rer");
+        
+      }
+    }
   },
   mounted() {
     this.$store.dispatch("fetchUsers");
@@ -250,5 +470,19 @@ a {
 
 .extraPadding{
     padding-inline: 2rem;
+}
+
+input , select {
+  width: 30rem;
+  max-width: 90%;
+  height: 1.8rem;
+  margin-block: 0.5rem;
+  justify-content: center;
+  background-color: #181818;
+  padding-inline: 1rem;
+
+  &:focus {
+    outline: none;
+  }
 }
 </style>
