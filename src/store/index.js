@@ -86,6 +86,69 @@ export default createStore({
       }
     },
 
+    async addProduct(context, payload) {
+      try {
+        const { msg } = await (await axios.post(`${apiURL}products/addProduct`, payload)).data
+        if (msg) {
+          context.dispatch('fetchProducts')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
+    },
+
+    async addUser(context, payload) {
+      try {
+        const { token, msg, error } = await (await axios.post(`${apiURL}users/register`, payload)).data
+        if (token) {
+          context.dispatch('fetchUsers')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        } else {
+          toast.warning(`${error}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
+    },
+
+    async deleteUser(context, userID) {
+      try {
+        const { msg, err } = await (await axios.delete(`${apiURL}users/delete/${userID}`)).data
+        if (msg) {
+          context.dispatch('fetchUsers')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        } else {
+          toast.error(`${err}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
+    }
   },
   modules: {
   }
