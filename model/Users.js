@@ -62,7 +62,7 @@ class Users{
                     if (err) {
                         res.json({
                             status: res.statusCode,
-                            msg: 'This email is already in use.'
+                            error: 'This email is already in use.'
                         })
                     } else {
                         const token = createToken(user)
