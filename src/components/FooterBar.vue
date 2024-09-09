@@ -3,7 +3,7 @@
     class="d-flex flex-wrap justify-content-between align-items-center py-3"
   >
     <div class="col-md-4 d-flex align-items-center mx-3">
-      <span class="mb-3 mb-md-0">© 2024 Company, Inc</span>
+      <span class="mb-3 mb-md-0"> &copy; {{ cYear }} - Elite Galería</span>
     </div>
 
     <ul class="nav col-md-4 justify-content-end list-unstyled me-3 d-flex">
@@ -23,7 +23,18 @@
   </footer>
 </template>
 
-<style>
+<script>
+export default{
+  data() {
+            return {
+                cYear: new Date().getUTCFullYear()
+            }
+        }
+}
+</script>
+
+
+<style scoped>
 footer {
   background: rgb(24, 24, 24);
   & * {    
@@ -34,7 +45,7 @@ footer {
 
 a , span, i{
   color: #e9e9e9;
-  transition: color 0.6s;
+  transition: color 0.3s;
   &:hover {
       color: #818181;
     }
