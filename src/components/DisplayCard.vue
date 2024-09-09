@@ -33,5 +33,9 @@
     border-top: 4px solid #e9e9e9;
     border-bottom: 1px solid #e9e9e9;
   }
+
+  .card-header{
+    padding: 0;
+  }
   
 </style>

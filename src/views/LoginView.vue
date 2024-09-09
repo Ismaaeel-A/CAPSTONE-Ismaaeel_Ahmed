@@ -61,4 +61,13 @@ select {
   color: #181818;
   opacity: 0.8; /* Firefox */
 }
+
+.section{
+  background-image: url(https://ismaaeel-a.github.io/CapstoneImages/images/login.png);
+    min-height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 </style>

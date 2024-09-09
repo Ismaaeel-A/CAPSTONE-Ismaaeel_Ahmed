@@ -39,13 +39,15 @@ export default createStore({
           context.commit('setUsers', results)
         } else {
           toast.error(`${msg}`, {
-            autoClose: 3000
+            autoClose: 3000,
+            position: 'bottom-center'
           })
         }
 
       } catch (e) {
         toast.error(`${e.msg}`, {
-          autoClose: 3000
+          autoClose: 3000,
+            position: 'bottom-center'
         })
       }
     },
@@ -57,13 +59,15 @@ export default createStore({
           context.commit('setProducts', results)
         } else {
           toast.error(`${msg}`, {
-            autoClose: 3000
+            autoClose: 3000,
+            position: 'bottom-center'
           })
         }
 
       } catch (e) {
         toast.error(`${e.msg}`, {
-          autoClose: 3000
+          autoClose: 3000,
+            position: 'bottom-center'
         })
       }
     },
@@ -75,13 +79,15 @@ export default createStore({
           context.commit('setProduct', result)
         } else {
           toast.error(`${msg}`, {
-            autoClose: 3000
+            autoClose: 3000,
+            position: 'bottom-center'
           })
         }
 
       } catch (e) {
         toast.error(`${e.msg}`, {
-          autoClose: 3000
+          autoClose: 3000,
+            position: 'bottom-center'
         })
       }
     },
@@ -148,7 +154,64 @@ export default createStore({
           position: 'bottom-center'
         })
       }
+    },
+
+    async deleteProduct(context, productID) {
+      try {
+        const { msg, err } = await (await axios.delete(`${apiURL}products/delete/${productID}`)).data
+        if (msg) {
+          context.dispatch('fetchProducts')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        } else {
+          toast.error(`${err}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
+    },
+
+    async editUser(context, userID) {
+      try {
+        const { msg } = await (await axios.patch(`${apiURL}users/update/${userID}`)).data
+        if (msg) {
+          context.dispatch('fetchUsers')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   },
   modules: {
   }
