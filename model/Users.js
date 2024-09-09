@@ -91,7 +91,7 @@ class Users{
             const strQry = `UPDATE Users SET ? WHERE UserID = ${req.params.id}`
 
             db.query(strQry, [data], (err) => {
-                if (err) throw new Error('Unable to update user information')
+                if (err) throw new Error(err.msg)
                 res.json({
                     status: res.statusCode,
                     msg: 'Successfully updated user information.'
