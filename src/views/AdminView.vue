@@ -85,6 +85,86 @@
             <td>
               <button type="button" @click="deleteProduct(product.productID)">Delete</button>
               <!-- <button type="button" id="`${user.userID}`">Delete</button> -->
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#editP${product.productID}`">
+  Edit
+</button>
+
+<!-- Modal -->
+<div class="modal fade" :id="`editP${product.productID}`" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" :aria-labelledby="`editP${product.productID}`" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" :id="`editP${product.productID}`">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <form>
+              <input type="text" v-model="product.prodName" placeholder="Name..." required>
+              <select name="" id="" v-model="product.prodBrand" required>
+                <option value="Ferrari">Ferrari</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Pagani">Pagani</option>
+              </select>
+              <input type="text" v-model="product.prodDescription" placeholder="Description" required>
+              <input type="text" v-model="product.prodImg1" placeholder="Image 1..." required>
+              <input type="text" v-model="product.prodImg2" placeholder="Image 2..." required>
+              <input type="text" v-model="product.prodImg3" placeholder="Image 3..." required>
+              <input type="text" v-model="product.price" placeholder="Price..." required>
+              <input type="text" v-model="product.quantity" placeholder="Quantity..." required>
+            </form>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-warning" @click="editProduct(product)">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </td>
           </tr>
         </tbody>
@@ -147,14 +227,14 @@
                 <option value="admin">admin</option>
               </select>
               <input type="email" v-model="user.emailAdd" placeholder="Email" required>
-              <input type="password" v-model="user.userPass" placeholder="Password" required>
+              <input type="password" v-model="user.userPass" placeholder="Password" required>              
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <!-- <button type="button" class="btn btn-primary" @click="createUser">Create</button> -->
-            <button type="button" class="btn btn-warning" @click="editUser(user.userID)">Edit</button>
-          </div>
+            <button type="button" class="btn btn-warning" @click="editUser(user)">Edit</button>
+          </div>          
         </div>
       </div>
     </div>
@@ -338,12 +418,11 @@ export default {
     ...mapState(['users', 'products'])
   },
   methods: {
-    ...mapActions(['addProduct', 'fetchUsers', 'addUser', 'fetchProducts', 'editUser', 'deleteUser', 'deleteProduct']),
+    ...mapActions(['fetchUsers', 'fetchProducts', 'addUser','addProduct', 'editUser', 'editProduct', 'deleteUser', 'deleteProduct']),
 
     async createProduct() {
       try {
         await this.addProduct(this.newProduct);
-
         this.newProduct = {
           prodName: "",
           prodBrand: "",
@@ -409,13 +488,28 @@ export default {
       }
     },
 
-    async editUser(userID) {
+    editUser(user) {
       try {
-        this.$store.dispatch('editUser', userID).then(() => {
-          this.fetchUsers()
+        console.log(user);
+        this.$store.dispatch('editUser', user).then(() => {
+          this.fetchUsers()   
         })
       } catch (e) {
         toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
+    },
+
+    editProduct(product) {
+      try {
+        console.log(product);
+        this.$store.dispatch('editProduct', product).then(() => {
+          this.fetchProducts()
+        })
+      } catch (e) {
+                toast.error(`${e.message}`, {
           autoClose: 2000,
           position: 'bottom-center'
         })

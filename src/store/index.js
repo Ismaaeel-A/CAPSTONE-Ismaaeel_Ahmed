@@ -179,9 +179,9 @@ export default createStore({
       }
     },
 
-    async editUser(context, userID) {
+    async editUser(context, user) {
       try {
-        const { msg } = await (await axios.patch(`${apiURL}users/update/${userID}`)).data
+        const { msg } = await (await axios.patch(`${apiURL}users/update/${user.userID}`, user)).data
         if (msg) {
           context.dispatch('fetchUsers')
           toast.success(`${msg}`, {
@@ -189,6 +189,25 @@ export default createStore({
             position: 'bottom-center'
           })
         }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
+    },
+
+
+    async editProduct(context, product) {
+      try {
+        await (axios.patch(`${apiURL}products/update/${product.productID}`, product)).data
+        
+          context.dispatch('fetchProducts')
+          toast.success(`Successfully updated product`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        
       } catch (e) {
         toast.error(`${e.message}`, {
           autoClose: 2000,
