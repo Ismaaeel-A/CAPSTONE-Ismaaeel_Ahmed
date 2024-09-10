@@ -31,12 +31,15 @@
 
           <button @click="toggleSortOrder" class="mt-2 sort">
             <i :class="iconClass"></i>
-            <!-- {{ sortOrder === 'asc' ? 'Ascending' : 'Descending' }} -->
           </button>
         </div>
       </div>
 
       <div class="row justify-content-center" v-if="products">
+        <div v-if="!sortedAndFilteredProducts.length" class="row justify-content-center">
+          <h3 class="text-center mt-5">Could not find item</h3>
+        </div>
+        
         <DisplayCard v-for="(product, productID) in sortedAndFilteredProducts" :key="productID">
           <template #cardHeader>
             <router-link :to="`/single/${product.productID}`" class="d-flex justify-content-between toSingle">
@@ -101,6 +104,8 @@ export default {
   methods: {
     toggleSortOrder() {
     this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    console.log(this.products);
+    
   }
   },
   mounted() {
