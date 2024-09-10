@@ -5,7 +5,9 @@ import ShowroomView from '../views/ShowroomView.vue'
 import SingleView from '../views/SingleView.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignUpView from '@/views/SignUpView.vue'
+import ContactView from '@/views/ContactView.vue'
 import AdminView from '@/views/AdminView.vue'
+
 
 const routes = [
   {
@@ -37,6 +39,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignUpView
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: ContactView
   },
   {
     path: '/admin',

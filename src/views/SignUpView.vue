@@ -79,7 +79,7 @@ h2 {
 input,
 select,
 button {
-  width: 60%;
+  width: 80%;
   height: 1.8rem;
   border-radius: 0.2rem;
   border: 2px outset #212121;
@@ -94,8 +94,8 @@ button {
   }
 }
 
-button:hover {
-  background: #181818;
+[type="submit"]:hover{
+    background: #181818;
 }
 
 ::placeholder {
