@@ -18,19 +18,22 @@
     <main class="container">
       <h2 class="text-center mt-4">The Showroom</h2>
 
-      <div class="row justify-content-center">
-        <input type="search" class="mt-2" v-model="searchTerm" />
+      <div class="row justify-content-center filterSortSearch">
+        <div class="row justify-content-center">
+          <input type="search" class="mt-2" v-model="searchTerm" />
 
-        <select v-model="selectedBrand" class="mt-2">
-          <option value="">All Brands</option>
-          <option value="Ferrari">Ferrari</option>
-          <option value="Pagani">Pagani</option>
-          <option value="Lamborghini">Lamborghini</option>
-        </select>
+          <select v-model="selectedBrand" class="mt-2 filter">
+            <option value="">All</option>
+            <option value="Ferrari">Ferrari</option>
+            <option value="Pagani">Pagani</option>
+            <option value="Lamborghini">Lamborghini</option>
+          </select>
 
-        <button @click="toggleSortOrder">
-          Sort by Price: {{ sortOrder === 'asc' ? 'Ascending' : 'Descending' }}
-        </button>
+          <button @click="toggleSortOrder" class="mt-2 sort">
+            <i :class="iconClass"></i>
+            <!-- {{ sortOrder === 'asc' ? 'Ascending' : 'Descending' }} -->
+          </button>
+        </div>
       </div>
 
       <div class="row justify-content-center" v-if="products">
@@ -90,6 +93,9 @@ export default {
           return b.price - a.price;
         }
       });
+    },
+    iconClass() {
+      return this.sortOrder === 'asc' ? 'bi-arrow-up' : 'bi-arrow-down';
     }
   },
   methods: {
@@ -161,15 +167,39 @@ h2 {
 }
 
 input {
-  width: 30rem;
-  max-width: 90%;
+  width: 26rem;
+  max-width: 40%;
   height: 1.8rem;
-  border-radius: 2rem;
+  border-radius: 2rem 0 0 2rem;
+  border: 2px inset #818181;
   justify-content: center;
   background-color: #181818;
   padding-inline: 1rem;
 
   &:focus {
+    outline: none;
+  }
+}
+
+.sort{
+  background: #181818;
+  border-radius: 0 2rem 2rem 0;
+  border: 2px inset #818181;
+  border-left: none;
+  width: 2rem;  
+  height: 1.8rem;
+  padding-inline: 0;
+}
+
+.filter {
+    background: #181818;
+    width: 6rem;
+    max-width: 90%;
+    height: 1.8rem;
+    border: 2px inset #818181;
+    border-left: none;
+
+    &:focus {
     outline: none;
   }
 }
@@ -184,4 +214,6 @@ img{
     width: 100%;
     text-decoration: none;
   }
+
+  
 </style>
