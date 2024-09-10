@@ -12,7 +12,7 @@
       </select>
       <input type="email" v-model="newUser.emailAdd" placeholder="Email" required/>
       <input type="password" v-model="newUser.userPass" placeholder="Password" required/>
-      <button type="button" @click="createUser">Create</button>
+      <input type="submit" @click="createUser"/>
     </form>
   </div>
 </template>

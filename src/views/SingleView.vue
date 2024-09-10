@@ -1,14 +1,17 @@
 <template>
   <div class="container-fluid section">
     <div class="intro row" v-if="product">
+      <div class="d-flex flex-wrap col-md-12 img1 mainImg">
+        <img intro :src="product.prodImg3" class="img-fluid"/>
+      </div>
       <div class="d-flex flex-wrap col-md-6 img1">
         <img intro :src="product.prodImg2" class="img-fluid"/>
-        <!-- <div class="cover d-none d-lg-none d-xl-block"></div> -->
       </div>
 
       <div class="description col-md-6 text-center px-5">
         <h1> {{ product.prodName }} </h1>
       </div>
+
     </div>
   </div>
 </template>
@@ -19,7 +22,7 @@ export default {
   components: {
 
   },
-   computed: {
+  computed: {
     product() {
       return this.$store.state.product;
     }
@@ -43,17 +46,15 @@ h1{
   text-decoration: underline;
 }
 
-/* .cover {
-  position: absolute;
-  width: 16rem;
-  height: 26rem;
-  background: linear-gradient(#e9e9e9, #818181);
-  box-shadow: 1rem 0 2rem #000000;
-  transform: skew(-19deg);
-  z-index: 2;
-  right: 50%;
-} */
 .description{
   box-shadow: inset 1rem -1rem 3rem #181818;
+}
+
+.mainImg{
+  border-bottom: 4px solid #e9e9e9;
+}
+
+.img1{
+  padding: 0;
 }
 </style>
