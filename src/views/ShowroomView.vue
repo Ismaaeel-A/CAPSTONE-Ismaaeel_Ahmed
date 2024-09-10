@@ -19,23 +19,33 @@
       <h2 class="text-center mt-4">The Showroom</h2>
 
       <div class="row justify-content-center">
-        <input type="search" class="mt-2" />
+        <input type="search" class="mt-2" v-model="searchTerm" />
+
+        <select v-model="selectedBrand" class="mt-2">
+          <option value="">All Brands</option>
+          <option value="Ferrari">Ferrari</option>
+          <option value="Pagani">Pagani</option>
+          <option value="Lamborghini">Lamborghini</option>
+        </select>
+
+        <button @click="toggleSortOrder">
+          Sort by Price: {{ sortOrder === 'asc' ? 'Ascending' : 'Descending' }}
+        </button>
       </div>
 
       <div class="row justify-content-center" v-if="products">
-        <DisplayCard v-for="(product, productID) in products" :key="productID">
+        <DisplayCard v-for="(product, productID) in sortedAndFilteredProducts" :key="productID">
           <template #cardHeader>
             <router-link :to="`/single/${product.productID}`" class="d-flex justify-content-between toSingle">
-              <img :src="product.prodImg1" :alt="product.prodName">
+            <img :src="product.prodImg1" :alt="product.prodName">
             </router-link>
-            
           </template>
 
           <template #cardBody>           
             <router-link :to="`/single/${product.productID}`" class="d-flex justify-content-between toSingle">
-              <h6>{{ product.prodName }}</h6>
+            <h6>{{ product.prodName }}</h6>
             <h6>R{{ product.price }}</h6>
-            </router-link>
+          </router-link>
           </template>
         </DisplayCard>
       </div>
@@ -51,14 +61,41 @@ import DisplayCard from '@/components/DisplayCard.vue';
 import SpinnerLoader from '@/components/SpinnerLoader.vue';
 
 export default {
+  data() {
+    return{
+      searchTerm: '',
+      selectedBrand: '',
+      sortOrder: 'asc'
+    }
+  },
   components: {
     DisplayCard,
     SpinnerLoader
   },
-   computed: {
+  computed: {
     products() {
       return this.$store.state.products;
+    },
+    filteredProducts() {
+    return this.products.filter(product => 
+      product.prodName.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
+      (this.selectedBrand === '' || product.prodBrand === this.selectedBrand)
+      );
+    },
+    sortedAndFilteredProducts() {
+      return this.filteredProducts.slice().sort((a, b) => {
+        if (this.sortOrder === 'asc') {
+          return a.price - b.price;
+        } else {
+          return b.price - a.price;
+        }
+      });
     }
+  },
+  methods: {
+    toggleSortOrder() {
+    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+  }
   },
   mounted() {
     this.$store.dispatch("fetchProducts");
