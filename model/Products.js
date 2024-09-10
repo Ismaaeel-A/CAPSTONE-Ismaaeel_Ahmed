@@ -45,7 +45,7 @@ class Products {
             const strQry = `INSERT INTO Products SET ?;`
 
             db.query(strQry, [req.body], (err) => {
-                if (err) throw new Error('Unable to add product at this time.')
+                if (err) throw new Error(err)
                 res.json({
                     status: res.statusCode,
                     msg: 'Product added successfully.'
