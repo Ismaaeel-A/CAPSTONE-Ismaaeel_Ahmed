@@ -278,6 +278,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import { toast } from 'vue3-toastify';
+import store from '@/store';
 
 export default {
   data() {
@@ -393,10 +394,25 @@ export default {
 
     editUser(user) {
       try {
-        console.log(user);
-        this.$store.dispatch('editUser', user).then(() => {
-          this.fetchUsers()   
-        })
+        let count = 0 
+        
+        store.state.users.forEach((value) => {
+            if (value.emailAdd == user.emailAdd) {
+              count = count + 1
+            }
+        });
+
+        if (count > 1) {
+          toast.warning(`Email is already in use!`, {
+            autoClose: 3000,
+            position: 'bottom-center'
+          })
+        }else{
+          this.$store.dispatch('editUser', user).then(() => {
+            this.fetchUsers()   
+          })
+        }
+
       } catch (e) {
         toast.error(`${e.message}`, {
           autoClose: 2000,

@@ -22,6 +22,7 @@
         <router-link to="/" class="links">Checkout</router-link>
         <router-link to="/contact" class="links">Contact</router-link>
         <router-link to="/login" class="links">Login</router-link>
+        <router-link to="/profile" class="links">Profile</router-link>
       </nav>
     </div>
   </div>
