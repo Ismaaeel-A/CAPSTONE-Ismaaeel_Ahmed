@@ -197,7 +197,6 @@ export default createStore({
       }
     },
 
-
     async editProduct(context, product) {
       try {
         await (axios.patch(`${apiURL}products/update/${product.productID}`, product)).data
@@ -215,21 +214,6 @@ export default createStore({
         })
       }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   },
   modules: {

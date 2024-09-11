@@ -35,7 +35,7 @@
                 <input type="text" v-model="newProduct.quantity" placeholder="Quantity..." required>
                 <div class="modal-footer">
                 <button type="button" class="closeModal" data-bs-dismiss="modal">Close</button>
-                <input type="submit" class="closeModal" @click="createProduct"/>
+                <button type="button" class="closeModal" @click="createProduct">Create Product</button>
               </div>
               </form>
             </div>
@@ -131,7 +131,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" :id="`editP${product.productID}`">Modal title</h1>
+          <h1 class="modal-title fs-5" :id="`editP${product.productID}`">Edit: {{ product.prodName }}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -151,7 +151,7 @@
                 <input type="text" v-model="product.quantity" placeholder="Quantity..." required>
                 <div class="modal-footer">
                   <button type="button" class="closeModal" data-bs-dismiss="modal">Close</button>
-                  <input type="submit" class="" @click="editProduct(product)"/>
+                  <button type="button" class="closeModal" @click="editProduct(product)">Edit Product</button>
                 </div>
               </form>
         </div>
@@ -197,7 +197,7 @@
                 <input type="password" v-model="newUser.userPass" placeholder="Password" required>
                 <div class="modal-footer">
                 <button type="button" class="closeModal" data-bs-dismiss="modal">Close</button>
-                <input type="submit" class="" @click="createUser">
+                <button type="button" class="closeModal" @click="createUser">Create User</button>
               </div>
               </form>
             </div>
@@ -239,7 +239,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" :id="`edit${user.userID}`">Modal title</h1>
+              <h1 class="modal-title fs-5" :id="`edit${user.userID}`">Edit: {{ user.firstName }} {{ user.lastName }}</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -258,7 +258,7 @@
                 <input type="password" v-model="user.userPass" placeholder="Password" required> 
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="button" class="closeModal" data-bs-dismiss="modal">Close</button>
-                  <input type="submit" class="" @click="editUser(user)">
+                  <button type="button" class="closeModal" @click="editUser(user)">Edit User</button>
                 </div>              
               </form>
             </div>         
@@ -508,7 +508,12 @@ select {
   justify-content: center;
   background-color: #181818;
   width: 100%;
+  transition: color 0.3s, background 0.3s;
 
+  &:hover{
+    color: #181818;
+    background: #e9e9e9
+  }
 
   &:focus {
     outline: none;

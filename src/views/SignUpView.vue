@@ -12,7 +12,7 @@
       </select>
       <input type="email" v-model="newUser.emailAdd" placeholder="Email" required/>
       <input type="password" v-model="newUser.userPass" placeholder="Password" required/>
-      <input type="submit" @click="createUser"/>
+      <button type="button" class="send" @click="createUser">Create account</button>
     </form>
   </div>
 </template>
@@ -93,7 +93,7 @@ button {
     outline: none;
   }
 }
-
+/* change */
 [type="submit"]:hover{
     background: #181818;
 }
