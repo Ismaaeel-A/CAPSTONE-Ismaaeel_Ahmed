@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid section">
-    <div class="row brandopt">
-      <div class="col-md-4">
+    <div class="row brandopt py-3">
+<!--       <div class="col-md-4">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg" alt="Lamborghini" />
         <h4 class="centered">Lamborghini</h4>
       </div>
@@ -12,11 +12,40 @@
       <div class="col-md-4">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg" alt="Pagani" />
         <h4 class="centered">Pagani</h4>
+      </div> -->
+
+      <!--  -->
+
+      <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
+
+      <!--  -->
+      <span>
+        <a href="#The Showroom" class="scroll-indicator bi-arrow-down"></a>
+      </span>
     </div>
 
-    <main class="container">
-      <h2 class="text-center mt-4">The Showroom</h2>
+    <main class="container sbm">
+      <h2 class="text-center mt-4" id="The Showroom">The Showroom</h2>
 
       <div class="row justify-content-center filterSortSearch">
         <div class="row justify-content-center">
@@ -32,6 +61,7 @@
           <button @click="toggleSortOrder" class="mt-2 sort">
             <i :class="iconClass"></i>
           </button>
+          <h4 class="centered">Find Your Beast Today</h4>
         </div>
       </div>
 
@@ -119,6 +149,19 @@ export default {
   color: #e9e9e9;
 }
 
+.sbm{
+  min-height: fit-content;
+  scroll-margin-block: 500px;
+  scroll-snap-align: center;
+}
+.section{
+  scroll-snap-type: x mandatory;
+}
+.brandopt{
+  border-bottom: 5px solid #e9e9e9;
+  position: relative;
+}
+
 .col-md-4 {
   display: flex;
   justify-content: center;
@@ -151,7 +194,7 @@ export default {
       bottom: 0;
       content: "";
       display: block;
-      height: 2px;
+      height: 1rem;
       left: 50%;
       position: absolute;
       background: #e9e9e9;
@@ -161,9 +204,13 @@ export default {
 
 .centered {
   position: absolute;
+  text-align: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 5;
+  font-size: 10rem;
+  max-width: 100%;
 }
 
 h2 {
@@ -220,5 +267,26 @@ img{
     text-decoration: none;
   }
 
-  
+  .scroll-indicator {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    z-index: 3;
+
+    border: 6px double #e9e9e9;
+    width: 2rem;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    padding: 0;
+}
+
+.scroll-indicator:hover {
+    background-color: rgba(0, 0, 0, 1);
+}
 </style>

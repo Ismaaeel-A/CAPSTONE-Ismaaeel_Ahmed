@@ -7,13 +7,18 @@
         <img src="https://ismaaeel-a.github.io/allimages/Images/plc.png" alt="">      
       </div>
         
-      <div class="col-md-8 rounded-2">
-        <h2>roles</h2>
-        <span>First name:</span>
-        <span>Last name:</span>
-        <span>Gender:</span>
-        <span>Email:</span>
-        <span>Pass</span>
+      <div class="col-md-8 rounded-2 d-flex flex-column justify-content-evenly align-items-evenly">
+        <h2>User details:</h2>
+<!--         <span>First name: <input type="text" v-model=""></span>
+        <span>Last name: <input type="text" v-model=""></span>
+        <span>Gender: 
+          <select v-model="">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </span>
+        <span>Email: <input type="email" v-model=""></span>
+        <span>Password: <input type="password" v-model=""></span> -->
       </div>
     </div>
 
@@ -39,5 +44,10 @@ export default {
 
   img{
     max-width: 100%;
+  }
+
+  input, select{
+    background: #818181;
+    border: none;
   }
 </style>
