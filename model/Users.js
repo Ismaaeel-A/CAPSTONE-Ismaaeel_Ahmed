@@ -62,7 +62,7 @@ class Users{
                     if (err) {
                         res.json({
                             status: res.statusCode,
-                            msg: 'This email is already in use.'
+                            error: 'This email is already in use.'
                         })
                     } else {
                         const token = createToken(user)
@@ -90,8 +90,8 @@ class Users{
             }
             const strQry = `UPDATE Users SET ? WHERE UserID = ${req.params.id}`
 
-            db.query(strQry, [data], (err) => {
-                if (err) throw new Error('Unable to update user information')
+            db.query(strQry, [data], (error) => {
+                if (error) throw new Error(error.message)
                 res.json({
                     status: res.statusCode,
                     msg: 'Successfully updated user information.'
