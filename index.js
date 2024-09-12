@@ -3,6 +3,7 @@ import cors from 'cors'
 import { productRouter } from './controller/ProductController.js'
 import { userRouter, express } from './controller/UserController.js'
 import { errorHandling } from './middleware/ErrorHandling.js'
+import { cartRouter } from './controller/CartController.js'
 
 //CREATE AN EXPRESS APP
 const app = express()
@@ -21,6 +22,7 @@ app.use((req, res, next) => {
 
 app.use('/users', userRouter)
 app.use('/products',productRouter)
+app.use('/cart', cartRouter)
 app.use( express.static('./static'), express.json(), express.urlencoded({
     extended: true
     }),
