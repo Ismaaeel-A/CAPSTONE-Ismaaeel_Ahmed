@@ -253,8 +253,11 @@ export default createStore({
           cookies.set('VerifiedUser', {token, msg, result})
           applyToken(token)
           setTimeout(() => {
-            router.push({ name: 'home' });
+            router.push({ name: 'home' }).then(() => {
+              window.location.reload();
+            });
           }, 3000);
+          
         } else {
           toast.error(`${msg}`, {
             autoClose: 2000,

@@ -19,14 +19,58 @@
         <router-link to="/" class="links">Home</router-link>
         <router-link to="/about" class="links">About</router-link>
         <router-link to="/showroom" class="links">Showroom</router-link>
-        <router-link to="/" class="links">Checkout</router-link>
+        <router-link to="/" class="links" v-if="hide == false">Checkout</router-link>
         <router-link to="/contact" class="links">Contact</router-link>
-        <router-link to="/login" class="links">Login</router-link>
-        <router-link to="/profile" class="links">Profile</router-link>
+        <router-link to="/login" class="links" v-if="hide == false">Login</router-link>
+        <router-link to="/profile" class="links" v-if="hide == false">Profile</router-link>
+        <router-link to="/admin" v-if="isAdmin">Admin</router-link>
+        <button class="button" @click="logout" v-if="hide == false">Logout</button>
       </nav>
     </div>
   </div>
 </template>
+<script setup>
+import { useCookies } from 'vue3-cookies';
+import { useRouter } from 'vue-router';
+import { ref, onMounted } from 'vue';
+
+const { cookies } = useCookies();
+const router = useRouter();
+const loggedUser = ref(null);
+const error = ref(null);
+const isAdmin = ref(false);
+const hide = ref(true);
+
+onMounted(() => {
+  const token = cookies.get('VerifiedUser');
+  
+  if (token && token.result) {
+    loggedUser.value = token.result;
+    console.log(loggedUser.value.userRole);
+
+    if (loggedUser.value.userRole === 'user' || loggedUser.value.userRole === 'admin') {
+      hide.value = false;
+    }
+
+    if (loggedUser.value.userRole === 'admin') {
+      isAdmin.value = true;
+    }
+  } else {
+    error.value = 'No token found, redirecting or showing an error message.';
+    console.log("no token");
+    // router.push({ name: 'login' });
+  }
+});
+
+function logout() {
+  cookies.remove('VerifiedUser');
+  loggedUser.value = null;
+  isAdmin.value = false;
+  router.push({ name: 'login' }).then(() => {
+    window.location.reload();
+  });
+}
+</script>
 
 <style scoped>
 .navbar{
@@ -62,7 +106,7 @@ h4 {
   background: #181818;
 }
 
-.navlinks * {
+.navlinks a {
   color: #818181;
   font-size: 1.3rem;
   text-decoration: none;
@@ -91,5 +135,9 @@ h4 {
 .links:hover:after {
   width: 7rem;
   left: 0;
+}
+
+button {
+  color: #e9e9e9;
 }
 </style>
