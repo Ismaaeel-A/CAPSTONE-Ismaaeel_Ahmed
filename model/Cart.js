@@ -103,10 +103,10 @@ class Cart{
             const strQry = `DELETE FROM Cart WHERE userID = ${req.params.uid};`
 
             db.query(strQry, (err) => {
-                if (err) throw new Error('Failed to remove item.')
+                if (err) throw new Error('Failed to empty cart.')
                 res.json({
                     status: res.statusCode,
-                    msg: "The product has been removed."
+                    msg: "Cart emptied."
                 })
             })
         } catch (e) {
