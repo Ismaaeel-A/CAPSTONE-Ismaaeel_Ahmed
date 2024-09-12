@@ -21,7 +21,7 @@
         <router-link to="/showroom" class="links">Showroom</router-link>
         <router-link to="/cart" class="links" v-if="hide == false">Checkout</router-link>
         <router-link to="/contact" class="links">Contact</router-link>
-        <router-link to="/login" class="links" v-if="hide == false">Login</router-link>
+        <router-link to="/login" class="links" v-if="hide == true">Login</router-link>
         <router-link to="/profile" class="links" v-if="hide == false">Profile</router-link>
         <router-link to="/admin" v-if="isAdmin">Admin</router-link>
         <button class="button" @click="logout" v-if="hide == false">Logout</button>
