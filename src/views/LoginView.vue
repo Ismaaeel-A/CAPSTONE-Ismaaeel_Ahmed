@@ -1,18 +1,26 @@
 <template>
   <div
     class="container-fluid section d-flex justify-content-center align-items-center pb-5">
-    <form class="d-flex flex-column justify-content-center align-items-center rounded-1">
+    <form class="d-flex flex-column justify-content-center align-items-center rounded-1" @submit.prevent="login">
       <h2>Login</h2>
-    <input type="text" placeholder="EMAIL" />
-    <input type="text" placeholder="PASSWORD" />
-    <input type="submit"/>
+    <input type="text" placeholder="EMAIL" v-model="payload.emailAdd"/>
+    <input type="text" placeholder="PASSWORD" v-model="payload.userPass"/>
+    <input type="submit" value="login"/>
     <router-link to="/signup">Don't have an account? Sign up now</router-link>
     </form>
   </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { useStore } from 'vuex';
+import { reactive } from 'vue';
+
+const store = useStore()
+const payload = reactive({emailAdd:'',userPass:''})
+
+function login() {
+  store.dispatch('userLogin', payload)
+}
 </script>
 
 <style scoped>

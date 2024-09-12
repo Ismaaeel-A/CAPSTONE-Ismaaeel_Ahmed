@@ -2,7 +2,11 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 import { toast } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css'
+import { useCookies } from 'vue3-cookies'
+import { applyToken } from '@/service/VerifiedUser'
+import router from '@/router'
 
+const { cookies } = useCookies()
 const apiURL = 'https://capstone-ismaaeel-ahmed.onrender.com/'
 
 export default createStore({
@@ -48,6 +52,25 @@ export default createStore({
         toast.error(`${e.msg}`, {
           autoClose: 3000,
             position: 'bottom-center'
+        })
+      }
+    },
+
+    async fetchUser(context, id) {
+      try {
+        const {result, msg} = await (await axios.get(`${apiURL}users/${id}`)).data
+        if (result) {
+          context.commit('setUser', result)
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 3000,
+            position: 'bottom-center'
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.msg}`, {
+        autoClose: 3000,
+        position: 'bottom-center'
         })
       }
     },
@@ -213,7 +236,38 @@ export default createStore({
           position: 'bottom-center'
         })
       }
-    }
+    },
+
+    async userLogin(context, payload) {
+      try {
+        const { msg, result, token } = await (await axios.post(`${apiURL}users/login`, payload)).data
+        if (result) {
+          toast.success(`Logged in Successfully`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+          context.commit('setUser', {
+            msg,
+            result
+          })
+          cookies.set('VerifiedUser', {token, msg, result})
+          applyToken(token)
+          setTimeout(() => {
+            router.push({ name: 'home' });
+          }, 3000);
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
+    },
 
   },
   modules: {

@@ -61,7 +61,7 @@
           <button @click="toggleSortOrder" class="mt-2 sort">
             <i :class="iconClass"></i>
           </button>
-          <h4 class="centered">Find Your Beast Today</h4>
+          <!-- <h4 class="centered">Find Your Beast Today</h4> -->
         </div>
       </div>
 
@@ -184,8 +184,8 @@ export default {
   }
 }
 
- h4:hover:after {
-      width: 100%;
+/*  h4:hover:after {
+      width: 10rem;
       left: 0;
     }
 
@@ -200,7 +200,7 @@ export default {
       background: #e9e9e9;
       transition: width 0.3s ease 0s, left 0.3s ease 0s;
       width: 0;
-    }
+    } */
 
 .centered {
   position: absolute;
@@ -209,7 +209,7 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  font-size: 10rem;
+  font-size: 6rem;
   max-width: 100%;
 }
 
