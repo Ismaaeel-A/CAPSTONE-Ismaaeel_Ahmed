@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import ShowroomView from '../views/ShowroomView.vue'
 import SingleView from '../views/SingleView.vue'
+import CartView from '@/views/CartView.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import ProfileView from '@/views/ProfileView.vue'
@@ -30,6 +31,11 @@ const routes = [
     path: '/single/:id',
     name: 'single',
     component: SingleView
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: CartView
   },
   {
     path: '/login',

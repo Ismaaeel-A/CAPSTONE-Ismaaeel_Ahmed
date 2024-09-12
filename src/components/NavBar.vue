@@ -19,7 +19,7 @@
         <router-link to="/" class="links">Home</router-link>
         <router-link to="/about" class="links">About</router-link>
         <router-link to="/showroom" class="links">Showroom</router-link>
-        <router-link to="/" class="links" v-if="hide == false">Checkout</router-link>
+        <router-link to="/cart" class="links" v-if="hide == false">Checkout</router-link>
         <router-link to="/contact" class="links">Contact</router-link>
         <router-link to="/login" class="links" v-if="hide == false">Login</router-link>
         <router-link to="/profile" class="links" v-if="hide == false">Profile</router-link>
