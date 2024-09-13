@@ -11,7 +11,7 @@
       <div class="description col-md-6 text-center px-5">
         <h1> {{ product.prodName }} </h1>
         <p> {{ product.prodDescription }}</p>
-        <button class="bi bi-cart-plus rounded-2 addToCart"></button>
+        <button class="bi bi-cart-plus rounded-2 addToCart" @click="addCart"></button>
       </div>
 
     </div>
@@ -19,7 +19,8 @@
 </template>
 
 <script>
-
+import { useCookies } from 'vue3-cookies';
+const {cookies} = useCookies()
 export default {
   components: {
 
@@ -29,10 +30,21 @@ export default {
       return this.$store.state.product;
     }
   },
+  methods: {
+    addCart(){
+      const payload = {
+        productID : this.product.productID,
+        userID : cookies.get('VerifiedUser')?.result.userID
+      }
+
+      console.log(payload);
+      
+      return this.$store.dispatch('addCart', payload)
+    }
+  },
   mounted() {
     console.log(this.$route.params.id);
     console.log('here');
-    
     
     this.$store.dispatch("fetchProduct", this.$route.params.id);
   }, 

@@ -1,171 +1,123 @@
 <template>
-    <section class="section">
-      <div class="container my-5">
-        <h1 class="mb-4">Your Cart</h1>
-        <!-- Show cart items if there are any -->
-        <div v-if="cartItems && cartItems.length" class="cart-container mb-4">
-          <div class="cart-item mb-3" v-for="item in cartItems" :key="item.id">
-            <div class="row align-items-center">
-              <div class="col-md-3 d-flex justify-content-center">
-                <img :src="item.cover_image" alt="Game Cover" class="img-fluid">
-              </div>
-              <div class="col-md-6">
-                <h5>{{ item.title }}</h5>
-                <p class="mb-1">Quantity: {{ item.stock_quantity }}</p>
-              </div>
-              <div class="col-md-3 text-end">
-                <button class="btn btn-danger btn-sm" @click="confirmDelete(item.id)">Delete</button>
-              </div>
-            </div>
+    <section class="container-fluid section">
+      <div class="container">
+        <h2 class="text-center text-decoration-underline pt-2">Almost there...</h2>
+          <div class="row table-responsive">
+            <table class="table table-sm table-hover text-center">
+              <thead>
+            <tr>
+              <td>Name</td>
+              <td>Brand</td>
+              <td>Price</td>
+              <td>Quantity</td>
+              <td>Remove</td>
+            </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(order, orderID) in cart" :key="orderID">
+                  <td>{{ order.prodName }}</td>
+                  <td>{{ order.prodBrand }}</td>
+                  <td>{{ order.price }}</td>
+                  <td>
+                    <input type="number" @change="editCart(order.productID, $event)" :value="order.quantity">
+                  </td>
+                  <td>
+                    <button type="button" class="functionbtn bi bi-trash rounded-1" @click="deleteCart(order.productID)"></button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <td colspan="3"></td>
+                <td>
+                  <button @click="deleteAllCart" class="functionbtn bi bi-trash rounded-1">All</button>
+                </td>
+                <td>rob</td>
+              </tfoot>
+            </table>
           </div>
-          <button class="btn btn-warning w-100 mb-3" @click="confirmDeleteAll">Delete All</button>
-          <button class="btn btn-primary w-100" @click="confirmProceedToPurchase">Proceed to Purchase</button>
-        </div>
-        <!-- Show message if the cart is empty -->
-        <div v-else>
-          <p class="text-muted">Your cart is empty.</p>
-        </div>
+
+        <div v-if="!cart?.length"><p>Cart Empty</p></div>
       </div>
     </section>
   </template>
 
-<!--   <script setup>
-  import { onMounted, computed } from 'vue';
-  import { useStore } from 'vuex';
-  import { useCookies } from 'vue3-cookies';
-  import Swal from 'sweetalert2';
-  const store = useStore();
-  const { cookies } = useCookies();
-  const cartItems = computed(() => store.state.cart);
-  // Load cart items from cookies
-  const loadCartFromCookies = () => {
-    const cartData = cookies.get('cart');
-    if (cartData) {
+<script>
+import store from '@/store'
+import { toast } from 'vue3-toastify';
+console.log(toast);
+
+// import { useCookies } from 'vue3-cookies';
+// const {cookies} = useCookies()
+export default{
+  computed: {
+    cart() {
+      return store.state.cart
+    }
+  },
+  methods: { 
+  async editCart(productID, event) {
+    const quantity = event.target.value;
+    console.log(quantity, productID);
+    
+    try {
+      const quantity = event.target.value;
+      await this.$store.dispatch('editCart', { productID, quantity });
+
+      store.dispatch('editCart', { productID, quantity })
+      /* await this.getCart(); */
+    } catch (e) {
+      toast.error(`${e.message}`, {
+        autoClose: 2000,
+        position: 'bottom-center'
+      });
+    }
+  },
+
+    async deleteCart(productID) {    
       try {
-        const parsedCart = JSON.parse(cartData);
-        store.commit('setCart', parsedCart);
-      } catch (error) {
-        console.error('Failed to parse cart data from cookies', error);
-        store.commit('setCart', []);
+        this.$store.dispatch('deleteCart', productID);
+      } catch (e) {
+        this.$toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        });
       }
-    } else {
-      store.commit('setCart', []);
+    },
+
+    async deleteAllCart() {
+      try {
+        this.$store.dispatch('deleteAllCart');
+      } catch (e) {
+        this.$toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        });
+      }
     }
-  };
-  // Function to update cart cookies
-  const updateCookies = () => {
-    cookies.set('cart', JSON.stringify(store.state.cart), '1d');
-  };
-  // Remove an item from the cart
-  const removeItem = (itemId) => {
-    store.commit('removeFromCart', itemId);
-    updateCookies();
-  };
-  // Remove all items from the cart
-  const removeAllItems = () => {
-    store.commit('setCart', []);
-    cookies.remove('cart'); // Remove cart from cookies
-  };
-  // Confirm deletion of an item
-  const confirmDelete = async (itemId) => {
-    const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085D6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel'
-    });
-    if (result.isConfirmed) {
-      removeItem(itemId);
-      Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
-    }
-  };
-  // Confirm deletion of all items
-  const confirmDeleteAll = async () => {
-    const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this! All items will be deleted.",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085D6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete all!',
-      cancelButtonText: 'Cancel'
-    });
-    if (result.isConfirmed) {
-      removeAllItems();
-      Swal.fire('Deleted!', 'All items have been deleted.', 'success').then(() => {
-        // Optionally redirect to checkout page or refresh
-        window.location.href = '/cart'; // Replace with actual checkout URL
-      });
-    }
-  };
-  // Confirm and proceed to purchase
-  const confirmProceedToPurchase = async () => {
-    const result = await Swal.fire({
-      title: 'Proceed to Purchase',
-      text: "Are you sure you want to proceed? The cart will be cleared.",
-      icon: 'info',
-      showCancelButton: true,
-      confirmButtonColor: '#3085D6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, proceed!',
-      cancelButtonText: 'Cancel'
-    });
-    if (result.isConfirmed) {
-      removeAllItems(); // Clear the cart
-      Swal.fire('Cleared!', 'Your cart has been cleared and you are now proceeding to purchase.', 'success').then(() => {
-        // Optionally redirect to checkout page or refresh
-        window.location.href = '/cart'; // Replace with actual checkout URL
-      });
-    }
-  };
-  // Load cart items on component mount
-  onMounted(() => {
-    loadCartFromCookies();
-  });
-  </script> -->
+
+
+},
+  mounted() {
+    return  store.dispatch('getCart')
+  }
+}
+</script>
+
+
 
   <style scoped>
     * {
         color: #e9e9e9;
     }
 
-  .cart-container {
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    background-color: #F8F9FA;
-  }
-  .cart-item {
-    border-bottom: 1px solid #ddd;
-    padding: 1rem 0;
-  }
-  .cart-item:last-child {
-    border-bottom: none;
-  }
-  .img-fluid {
-    max-width: 100px;
-    height: auto;
-  }
-  .cart-container {
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    background-color: #F8F9FA;
-  }
-  .cart-item {
-    border-bottom: 1px solid #ddd;
-    padding: 1rem 0;
-  }
-  .cart-item:last-child {
-    border-bottom: none;
-  }
-  .img-fluid {
-    max-width: 100px;
-    height: auto;
-  }
+    .functionbtn{
+      background: #818181;
+      transition: background 0.4s, color 0.3s;
+      margin: 0.2rem;
+
+      &:hover{
+      background: #e9e9e9;
+      color: #818181;
+    }
+}
   </style>
