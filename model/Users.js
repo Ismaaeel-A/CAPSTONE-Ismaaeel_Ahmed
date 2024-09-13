@@ -26,7 +26,7 @@ class Users{
 
     getUser(req, res){
         try {
-            const strQry = `SELECT userID firstName, lastName, gender, userRole, emailAdd, userPass FROM Users WHERE userID = ${req.params.id};`
+            const strQry = `SELECT userID, firstName, lastName, gender, userRole, emailAdd, userPass FROM Users WHERE userID = ${req.params.id};`
 
             db.query(strQry, (err, result) => {
                 if (err) throw new Error(`Unable to fetch user`);
