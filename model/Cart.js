@@ -5,10 +5,12 @@ class Cart{
     getCart(req, res) {
         try {
             const strQry = 
-            `SELECT userID, productID, SUM(quantity) AS quantity
-            FROM Cart
-            WHERE userID = ${req.params.id}
-            GROUP BY userID, productID;`
+            `SELECT c.userID, c.productID, p.prodName, p.prodBrand, p.price SUM(c.quantity) AS quantity
+            FROM Cart c
+            JOIN 
+    Products p ON c.productID = p.productID
+            WHERE c.userID = ${req.params.id}
+            GROUP BY c.userID, c.productID;`
 
             db.query(strQry, (err, result) => {
                 if (err) throw new Error(`Unable retrieve cart.`);
