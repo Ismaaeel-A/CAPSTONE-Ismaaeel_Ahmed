@@ -5,7 +5,7 @@ class Cart{
     getCart(req, res) {
         try {
             const strQry = 
-            `SELECT c.userID, c.productID, p.prodName, p.prodBrand, p.price, SUM(c.quantity) AS quantity
+            `SELECT c.orderID, c.userID, c.productID, p.prodName, p.prodBrand, p.price, SUM(c.quantity) AS quantity
             FROM Cart c
             JOIN 
             Products p ON c.productID = p.productID
