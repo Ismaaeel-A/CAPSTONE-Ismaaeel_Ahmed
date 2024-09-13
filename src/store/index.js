@@ -7,8 +7,8 @@ import { applyToken } from '@/service/VerifiedUser'
 import router from '@/router'
 
 const { cookies } = useCookies()
-// const apiURL = 'https://capstone-ismaaeel-ahmed.onrender.com/'
-const apiURL = 'http://localhost:3024/'
+const apiURL = 'https://capstone-ismaaeel-ahmed.onrender.com/'
+// const apiURL = 'http://localhost:3024/'
 
 export default createStore({
   state: {
