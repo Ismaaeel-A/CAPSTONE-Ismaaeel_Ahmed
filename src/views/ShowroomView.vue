@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid section">
-    <div class="row brandopt py-3">
+    <div class="container brandopt py-3">
 <!--       <div class="col-md-4">
         <img src="https://ismaaeel-a.github.io/allimages/Images/cars1.jpg" alt="Lamborghini" />
         <h4 class="centered">Lamborghini</h4>
@@ -39,9 +39,9 @@
       </div>
 
       <!--  -->
-      <span>
+ <!--      <span>
         <a href="#The Showroom" class="scroll-indicator bi-arrow-down"></a>
-      </span>
+      </span> -->
     </div>
 
     <main class="container sbm">
@@ -49,7 +49,7 @@
 
       <div class="row justify-content-center filterSortSearch">
         <div class="row justify-content-center">
-          <input type="search" class="mt-2" v-model="searchTerm" />
+          <input type="search" class="mt-2" v-model="searchTerm" placeholder="Search..."/>
 
           <select v-model="selectedBrand" class="mt-2 filter">
             <option value="">All</option>
@@ -260,6 +260,13 @@ img{
     width: 100%;
     user-select: none;
     filter: drop-shadow(0 0 1rem #000000);
+    transition: transform 0.3s;
+      &:hover{
+        transform: scale(1.1);
+      }
+      &:active{
+        transform: scale(0.9);
+      }
   }
 
   .toSingle{

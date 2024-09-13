@@ -20,7 +20,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { toast } from "vue3-toastify";
-
+import router from "@/router";
 export default {
   data() {
     return {
@@ -51,6 +51,11 @@ export default {
           emailAdd: "",
           userPass: "",
         };
+        setTimeout(() => {
+            router.push({ name: 'login' }).then(() => {
+              window.location.reload();
+            });
+          }, 3000);
       } catch (e) {
         toast.error(`${e.message}`, {
           autoClose: 2000,

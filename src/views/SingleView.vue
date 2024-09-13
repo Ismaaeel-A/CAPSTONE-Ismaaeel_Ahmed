@@ -11,6 +11,7 @@
       <div class="description col-md-6 text-center px-5">
         <h1> {{ product.prodName }} </h1>
         <p> {{ product.prodDescription }}</p>
+        <p>R {{ product.price }}</p>
         <button class="bi bi-cart-plus rounded-2 addToCart" @click="addCart"></button>
       </div>
 

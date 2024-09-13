@@ -61,9 +61,9 @@ export default createStore({
       }
     },
 
-    async fetchUser(context, id) {
+    async fetchUser(context) {
       try {
-        const {result, msg} = await (await axios.get(`${apiURL}users/${id}`)).data
+        const {result, msg} = await (await axios.get(`${apiURL}users/${cookies.get('VerifiedUser')?.result.userID}`)).data
         if (result) {
           context.commit('setUser', result)
         } else {
