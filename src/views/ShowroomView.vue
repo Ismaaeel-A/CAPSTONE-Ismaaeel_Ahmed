@@ -58,10 +58,13 @@
             <option value="Lamborghini">Lamborghini</option>
           </select>
 
-          <button @click="toggleSortOrder" class="mt-2 sort">
-            <i :class="iconClass"></i>
+          <button @click="toggleSortOrder('name')" class="mt-2 sorta">
+            <i :class="nameSortIconClass"></i>A 
           </button>
-          <!-- <h4 class="centered">Find Your Beast Today</h4> -->
+          <button @click="toggleSortOrder('price')" class="mt-2 sort1">
+            <i :class="priceSortIconClass"></i>1
+          </button>
+    
         </div>
       </div>
 
@@ -101,7 +104,8 @@ export default {
     return{
       searchTerm: '',
       selectedBrand: '',
-      sortOrder: 'asc'
+      sortOrder: 'asc',
+      nameSortOrder: 'asc'
     }
   },
   components: {
@@ -113,33 +117,47 @@ export default {
       return this.$store.state.products;
     },
     filteredProducts() {
-    return this.products.filter(product => 
-      product.prodName.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
-      (this.selectedBrand === '' || product.prodBrand === this.selectedBrand)
+      return this.products.filter(product => 
+        product.prodName.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
+        (this.selectedBrand === '' || product.prodBrand === this.selectedBrand)
       );
     },
     sortedAndFilteredProducts() {
-      return this.filteredProducts.slice().sort((a, b) => {
-        if (this.sortOrder === 'asc') {
-          return a.price - b.price;
-        } else {
-          return b.price - a.price;
-        }
-      });
+      let sortedProducts = this.filteredProducts.slice();
+      
+      if (this.currentSort === 'price') {
+        sortedProducts.sort((a, b) => {
+          return this.sortOrder === 'asc' ? a.price - b.price : b.price - a.price;
+        });
+      } else if (this.currentSort === 'name') {
+        sortedProducts.sort((a, b) => {
+          return this.nameSortOrder === 'asc' ? a.prodName.localeCompare(b.prodName) : b.prodName.localeCompare(a.prodName);
+        });
+      }
+
+      return sortedProducts;
     },
-    iconClass() {
+    priceSortIconClass() {
       return this.sortOrder === 'asc' ? 'bi-arrow-up' : 'bi-arrow-down';
+    },
+    nameSortIconClass() {
+      return this.nameSortOrder === 'asc' ? 'bi-arrow-up' : 'bi-arrow-down';
     }
   },
   methods: {
-    toggleSortOrder() {
-    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
-    console.log(this.products);
-    
-  }
+    toggleSortOrder(type) {
+      if (type === 'price') {
+        this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+        this.currentSort = 'price';
+      } else if (type === 'name') {
+        this.nameSortOrder = this.nameSortOrder === 'asc' ? 'desc' : 'asc';
+        this.currentSort = 'name';
+      }
+    }
   },
   mounted() {
     this.$store.dispatch("fetchProducts");
+    this.currentSort = 'price';
   }, 
 };
 </script>
@@ -233,9 +251,18 @@ input {
   }
 }
 
-.sort{
+.sort1{
   background: #181818;
   border-radius: 0 2rem 2rem 0;
+  border: 2px inset #818181;
+  border-left: none;
+  width: 2rem;  
+  height: 1.8rem;
+  padding-inline: 0;
+}
+
+.sorta{
+  background: #181818;
   border: 2px inset #818181;
   border-left: none;
   width: 2rem;  
@@ -246,11 +273,11 @@ input {
 .filter {
     background: #181818;
     width: 6rem;
-    max-width: 90%;
+    max-width: 20%;
     height: 1.8rem;
     border: 2px inset #818181;
     border-left: none;
-
+  padding-inline: 0.1rem;
     &:focus {
     outline: none;
   }

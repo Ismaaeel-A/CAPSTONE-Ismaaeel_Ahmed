@@ -3,9 +3,8 @@
     <h2 class="text-center">Profile:</h2>
     <div class="container">
     <div class="row profileCard p-2 d-flex mx-auto rounded-2">
-      <div class="col-md-4 p-2 rounded-2  d-flex flex-column align-items-evenly">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/plc.png" alt="profile">
-        <button type="button" class="functionbtn  bi bi-pen rounded-1" @click="editUser(user)"></button>   
+      <div class="col-md-4 p-2 rounded-2  d-flex flex-column align-items-evenly" v-if="user">
+        <img :src="profileImageUrl" alt="profileImageUrl">
       </div>
         
       <div class="col-md-8 rounded-2" v-if="user">
@@ -22,7 +21,29 @@
         <span>Email: <input type="email" v-model="user.emailAdd"></span>
         <span>Password: <input type="password" v-model="user.userPass"></span>
         <button type="button" class="functionbtn  bi bi-pen rounded-1" @click="editUser(user)"></button>   
-        <!-- <button type="button" class="functionbtn bi bi-trash rounded-1" @click="deleteUser(ID)"></button> -->
+        <!-- Button trigger modal -->
+      <button type="button" class="functionbtn bi bi-trash rounded-1" data-bs-toggle="modal"  data-bs-target="#exampleModal">
+        Delete
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"       aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to permanently delete your account. Deleted accounts can not be recovered.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="closeModal" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="closeModal" @click="deleteProfileUser(user)">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </form>
       </div>
     </div>
@@ -47,11 +68,25 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user 
-    })
+    }),
+
+    profileImageUrl() {
+      if (this.user.gender == 'male') {
+        console.log(this.user.gender);
+        return 'https://ismaaeel-a.github.io/CapstoneImages/images/male-icon.jpg'; // URL for male profile image
+      } else if (this.user.gender == 'female') {
+        console.log(this.user.gender);
+        return 'https://ismaaeel-a.github.io/CapstoneImages/images/female-icon.jpg'; // URL for female profile image
+      } else {
+        console.log(this.user.gender);
+        return 'https://ismaaeel-a.github.io/allimages/Images/plc.png'; // URL for default image if gender is unknown
+      }    
+    }
+}
     
-},
+,
   methods: {
-    ...mapActions(['editUser']),
+    ...mapActions(['editUser','deleteProfileUser']),
 
     editUser(user) {
       try {
@@ -67,18 +102,22 @@ export default {
       }
     },
 
-    // async deleteUser(ID) {
-    //   try {
-    //     // this.$store.dispatch('deleteUser', userID)
-    //     console.log(user);
+    async deleteProfileUser(user) {
+      try {
+        this.$store.dispatch('deleteProfileUser', user.userID)
+        // console.log(user);
+        console.log(user.userID);
         
-    //   } catch (e) {
-    //     toast.error(`${e.message}`, {
-    //       autoClose: 2000,
-    //       position: 'bottom-center'
-    //     })
-    //   }
-    // },
+        
+      } catch (e) {
+        toast.error(`${e.message}`, {
+        autoClose: 2000,
+        position: 'bottom-center'
+        })
+      }
+    }
+
+
   },
   mounted() {
     this.$store.dispatch("fetchUser");
@@ -115,7 +154,7 @@ export default {
   }
 
   .functionbtn{
-  background: #818181;
+  background: #181818;
   transition: background 0.4s, color 0.3s;
     margin-block: 0.4rem;
 
@@ -123,5 +162,29 @@ export default {
     background: #e9e9e9;
     color: #818181;
   }
+}
+
+.modal-header, .modal-body, .modal-footer{
+  background-color: #181818;
+}
+
+.closeModal{
+
+height: 1.8rem;
+margin-block: 0.5rem;
+margin-inline: 0;
+justify-content: center;
+background-color: #181818;
+width: 100%;
+transition: color 0.3s, background 0.3s;
+
+&:hover{
+  color: #181818;
+  background: #e9e9e9
+}
+
+&:focus {
+  outline: none;
+}
 }
 </style>

@@ -184,6 +184,37 @@ export default createStore({
       }
     },
 
+    async deleteProfileUser(context, user) {
+      try {
+        console.log(user);
+        console.table(user)
+        
+        const { msg, err } = await (await axios.delete(`${apiURL}users/delete/${user}`)).data
+        if (msg) {
+          cookies.remove('VerifiedUser');
+          /* loggedUser.value = null;
+          isAdmin.value = false; */
+          router.push({ name: 'login' }).then(() => {
+            window.location.reload();
+          });
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        } else {
+          toast.error(`${err}`, {
+            autoClose: 2000,
+            position: 'bottom-center'
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: 'bottom-center'
+        })
+      }
+    },
+
     async deleteProduct(context, productID) {
       try {
         const { msg, err } = await (await axios.delete(`${apiURL}products/delete/${productID}`)).data

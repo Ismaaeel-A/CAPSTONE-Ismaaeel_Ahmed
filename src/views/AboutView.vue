@@ -12,11 +12,11 @@
         </p>
       </div>
       <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
+        <img src="https://ismaaeel-a.github.io/CapstoneImages/images/about1.jpg" alt="Ferrari" loading="lazy"/>
       </div>
 
       <div class="col-md-6 d-flex align-items-center d-none d-md-block">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
+        <img src="https://ismaaeel-a.github.io/CapstoneImages/images/about11.jpg" alt="Ferrari" loading="lazy"/>
       </div>
       <div class="col-md-6 text-md-end">
         <h2 class="display-4">Our Mission</h2>
@@ -43,11 +43,11 @@
         </p>
       </div>
       <div class="col-md-6 d-flex align-items-center d-none d-md-block">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
+        <img src="https://ismaaeel-a.github.io/CapstoneImages/images/about3.jpg" alt="Ferrari" loading="lazy"/>
       </div>
 
       <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
+        <img src="https://ismaaeel-a.github.io/CapstoneImages/images/about4.jpg" alt="Ferrari" loading="lazy"/>
       </div>
       <div class="col-md-6 text-md-end">
         <h2 class="display-4">What We Offer</h2>
@@ -73,11 +73,11 @@
         </p>
       </div>
       <div class="col-md-6 d-flex align-items-center d-none d-md-block">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
+        <img src="https://ismaaeel-a.github.io/CapstoneImages/images/about10.jpg" alt="Ferrari" loading="lazy"/>
       </div>
 
       <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
+        <img src="https://ismaaeel-a.github.io/CapstoneImages/images/about7.jpg" alt="Ferrari" loading="lazy"/>
       </div>
       <div class="col-md-6 text-md-end">
         <h2 class="display-4">Join the Elite</h2>
@@ -102,11 +102,11 @@
         </p>
       </div>
       <div class="col-md-6 d-flex align-items-center d-none d-md-block">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
+        <img src="https://ismaaeel-a.github.io/CapstoneImages/images/about2.jpg" alt="Ferrari" loading="lazy"/>
       </div>
 
       <div class="col-md-6 d-flex align-items-center">
-        <img src="https://ismaaeel-a.github.io/allimages/Images/cars2.jpg" alt="Ferrari" loading="lazy"/>
+        <img src="https://ismaaeel-a.github.io/CapstoneImages/images/about10.jpg" alt="Ferrari" loading="lazy"/>
       </div>
       <div class="col-md-6 text-md-end">
         <h2 class="display-4">Elite Galería</h2>
