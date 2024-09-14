@@ -4,17 +4,17 @@
       <div class="d-flex flex-wrap col-md-12 img1 mainImg">
         <img intro :src="product.prodImg3" class="img-fluid"/>
       </div>
-      <div class="d-flex flex-wrap col-md-6 img1">
-        <img intro :src="product.prodImg2" class="img-fluid"/>
-      </div>
 
-      <div class="description col-md-6 text-center px-5">
+      <div class="description col-md-5 text-center px-5">
         <h1> {{ product.prodName }} </h1>
         <h3>R {{ product.price }}</h3>
         <p> {{ product.prodDescription }}</p>
         <button class="bi bi-cart-plus rounded-2 addToCart" @click="addCart"></button>
       </div>
 
+      <div class="d-flex flex-wrap col-md-7 img1">
+        <img intro :src="product.prodImg2" class="img-fluid"/>
+      </div>
     </div>
   </div>
 </template>

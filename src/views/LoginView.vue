@@ -4,7 +4,7 @@
     <form class="d-flex flex-column justify-content-center align-items-center rounded-1" @submit.prevent="login">
       <h2>Login</h2>
     <input type="text" placeholder="EMAIL" v-model="payload.emailAdd"/>
-    <input type="text" placeholder="PASSWORD" v-model="payload.userPass"/>
+    <input type="password" placeholder="PASSWORD" v-model="payload.userPass"/>
     <input type="submit" value="login"/>
     <router-link to="/signup">Don't have an account? Sign up now</router-link>
     </form>

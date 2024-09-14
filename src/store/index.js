@@ -393,18 +393,28 @@ export default createStore({
 
     async addCart(context, payload) {
       try {
-        const { msg, results } = await (await axios.post(`${apiURL}cart/add`, payload)).data
-        if (results) {
-          toast.success(`${msg}`, {
+
+        if (cookies.get('VerifiedUser')?.result === undefined) {
+            toast.warning(`User not logged in. Log in to add to cart.`, {
             autoClose: 2000,
             position: 'bottom-center'
           })
-        } else {
-          toast.success(`${msg}`, {
-            autoClose: 2000,
-            position: 'bottom-center'
-          })
+          console.log("not signed in");        
+        } else {         
+          const { msg, results } = await (await axios.post(`${apiURL}cart/add`, payload)).data
+          if (results) {
+            toast.success(`${msg}`, {
+              autoClose: 2000,
+              position: 'bottom-center'
+            })
+          } else {
+            toast.success(`${msg}`, {
+              autoClose: 2000,
+              position: 'bottom-center'
+            })
+          }
         }
+
       } catch (e) {
         toast.error(`${e.message}`, {
           autoClose: 2000,
